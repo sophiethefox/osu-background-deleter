@@ -8,7 +8,7 @@ Deleted backgrounds are stores in a `deleted_backgrounds` directory next to the 
 
 # Download
 
-Please go to the [Releases](/releases) page to download the latest release. This app is only available for 64-bit Windows currently.
+Please go to the [Releases](https://github.com/sophiethefox/osu-background-deleter/releases) page to download the latest release. This app is only available for 64-bit Windows currently.
 
 # Planned features
 
