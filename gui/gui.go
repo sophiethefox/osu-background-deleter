@@ -156,27 +156,39 @@ var (
 // todo: add deleting from thumbnail cache, /osu/Data/bt/[id]l?.jpg
 
 func ClearAndMoveBackground(imagePath, id, filename string) {
-	outDir := "./deleted_backgrounds" + "/" + id
-	outFile := outDir + "/" + filename
-	// create folder for beatmap id deleted files
-	os.MkdirAll(outDir, os.ModePerm)
+	_lc := strings.ToLower(imagePath)
+	// sanity check. ensure we're only deleting an image.
+	if strings.HasSuffix(_lc, ".png") || strings.HasSuffix(_lc, ".jpg") || strings.HasSuffix(_lc, ".jpeg") {
+		outDir := "./deleted_backgrounds" + "/" + id
+		outFile := outDir + "/" + filename
+		// create folder for beatmap id deleted files
+		os.MkdirAll(outDir, os.ModePerm)
 
-	// copy original background to deleted bg directory
-	CopyFile(imagePath, outFile)
+		// copy original background to deleted bg directory
+		CopyFile(imagePath, outFile)
 
-	// overwrite original bg w/ black img
-	ReplaceWithBlackImage(imagePath)
+		// overwrite original bg w/ black img
+		ReplaceWithBlackImage(imagePath)
 
-	deletedLastOriginalFilename = imagePath
-	deletedLastOutputFilename = outFile
-	updatePending = true
+		deletedLastOriginalFilename = imagePath
+		deletedLastOutputFilename = outFile
+		updatePending = true
+	}
 }
 
 func UndoDeletion() {
 	// move file from deleted backgrounds directory to the osu map directory
-	CopyFile(deletedLastOutputFilename, deletedLastOriginalFilename)
-	os.Remove(deletedLastOutputFilename)
-	updatePending = true
+	// even more sanity checks yipppeeeeee!!! i dont like shipping code that involves deleting files
+	lc_ := strings.ToLower(deletedLastOriginalFilename)
+	lc__ := strings.ToLower(deletedLastOutputFilename)
+	if strings.HasSuffix(lc_, ".png") || strings.HasSuffix(lc_, ".jpg") || strings.HasSuffix(lc_, ".jpeg") {
+		if strings.HasSuffix(lc__, ".png") || strings.HasSuffix(lc__, ".jpg") || strings.HasSuffix(lc__, ".jpeg") {
+			CopyFile(deletedLastOutputFilename, deletedLastOriginalFilename)
+			os.Remove(deletedLastOutputFilename)
+			updatePending = true
+		}
+	}
+
 }
 
 var (
