@@ -1,0 +1,8 @@
+Website = "https://github.com/sophiethefox/osu-background-deleter/"
+
+[Details]
+  Icon = "Icon.png"
+  Name = "osu! Background Deleter"
+  ID = "me.sophiethefox.cc"
+  Version = "1.0.0"
+  Build = 20

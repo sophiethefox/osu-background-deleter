@@ -1,0 +1,9 @@
+# osu! Background Deleter
+
+This app allows you to quickly delete the background of the current map! All you need to do is start the app, and whenever you select a map, the background will be shown in the app along with a `Delete` button.
+
+By default, this app will minimize to the system tray when closed. This is so that you don't need to have an extra application open when not playing osu!, while still allowing easy access. This can be changed in `config.ini`, and is the only setting you may need to change.
+
+# Credits
+
+Much of this project was based upon [l3lackShark](https://github.com/l3lackShark)'s and others [gosumemory](https://github.com/l3lackShark/gosumemory). Specifically, I am using a stripped down version of his memory reader implementation to see what map the user has selected in osu!.
